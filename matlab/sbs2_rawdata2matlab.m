@@ -86,7 +86,7 @@ end
 
 % Change to a relative time axis in stead of absolute time. t=0 when
 % recording starts
-if log10(mrk.pos(1))>12
+if numel(mrk.pos)~=0 && log10(mrk.pos(1))>12
     mrk.pos = mrk.pos/1e3;      %tr
     disp('Transforming mrk.pos from ms to seconds')
 end
@@ -150,6 +150,7 @@ lineno = 0;
 while 1
     tline = fgetl(fid);                 %Read meta file line by line
     lineno = lineno+1;
+    idx = 0;
     if ~ischar(tline), break, end
     
     string_name = [];
